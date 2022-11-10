@@ -27,6 +27,15 @@ async function run() {
             const query = {}
             const cursor = serviceCollection.find(query);
             const services = await cursor.toArray();
+            // const serviceLimited = await cursor.limit(3).toArray();
+            res.send(services);
+        });
+
+        app.get('/home-services', async (req, res) => {
+            const query = {}
+            const cursor = serviceCollection.find(query);
+            const services = await cursor.limit(3).toArray();
+            // const serviceLimited = await cursor.limit(3).toArray();
             res.send(services);
         });
 
@@ -58,6 +67,13 @@ async function run() {
             const query = {}
             const cursor = reviewCollection.find(query);
             const reviews = await cursor.toArray();
+            res.send(reviews);
+        });
+
+        app.get('/reviews/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const reviews = await reviewCollection.findOne(query);
             res.send(reviews);
         });
     }
