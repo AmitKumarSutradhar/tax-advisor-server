@@ -13,7 +13,7 @@ app.use(express.json());
 // Password : S6zUSsVfeRgJNPm8
 // UserName: taxAdvisor
 
-const uri = "mongodb+srv://taxAdvisor:S6zUSsVfeRgJNPm8@cluster0.qctdu57.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.qctdu57.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
